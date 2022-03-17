@@ -15,9 +15,11 @@ public class App {
     private static Scanner scanner = new Scanner(System.in);
 
     // WINDOWS
+    // private static final String ENDERECO_DICIONARIO = "C:\\Users\\areia\\Documents\\Coisas do Luan\\Desenvolvimento\\Estudos\\projeto-dicionario\\src\\br\\univates\\luan\\projeto_dicionario\\entities\\dicionario.json";
     // private static final JSONArray LISTA_DE_USUARIOS = JSONUtils.readExternalJson("C:\\Users\\areia\\Documents\\Coisas do Luan\\Desenvolvimento\\Estudos\\projeto-dicionario\\src\\br\\univates\\luan\\projeto_dicionario\\entities\\usuarios.json");
 
     // LINUX
+    private static final String ENDERECO_DICIONARIO = "/home/luansinh0/IdeaProjects/projeto-dicionario/src/br/univates/luan/projeto_dicionario/data/dicionario.json";
     private static final JSONArray LISTA_DE_USUARIOS = JSONUtils.readExternalJson("/home/luansinh0/IdeaProjects/projeto-dicionario/src/br/univates/luan/projeto_dicionario/data/usuarios.json");
     
     private static boolean validaExistenciaUsuario(Usuario usuarioTentandoEntrar) {
@@ -56,7 +58,7 @@ public class App {
     private static boolean iniciaApp() {
         boolean continuaLigado = true;
         
-        Dicionario dicionarioLuan = new Dicionario("/home/luansinh0/IdeaProjects/projeto-dicionario/src/br/univates/luan/projeto_dicionario/data/dicionario.json");
+        Dicionario dicionarioLuan = new Dicionario(ENDERECO_DICIONARIO);
 
         System.out.println(dicionarioLuan.getNome());
         for (Palavra palavra : dicionarioLuan.getPalavras()) {
