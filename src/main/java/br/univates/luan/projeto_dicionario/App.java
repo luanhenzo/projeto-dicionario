@@ -12,6 +12,8 @@ import br.univates.luan.projeto_dicionario.utilities.JSONUtils;
 
 public class App {
 
+    private static Scanner scanner = new Scanner(System.in);
+
     private static final JSONArray LISTA_DE_USUARIOS = JSONUtils.readExternalJson("C:\\Users\\areia\\Documents\\Coisas do Luan\\Desenvolvimento\\Estudos\\projeto-dicionario\\src\\main\\java\\br\\univates\\luan\\projeto_dicionario\\entities\\usuarios.json");
     
     private static boolean validaExistenciaUsuario(Usuario usuarioTentandoEntrar) {
@@ -28,9 +30,27 @@ public class App {
         }
         return usuarioEncontrado;
     }
-    
+
+    private static boolean confirmacao(String resposta) {
+        boolean confirma = Boolean.parseBoolean(null);
+        boolean confirmacaoSucedida = false;
+        while (!confirmacaoSucedida) {
+            if (resposta.equalsIgnoreCase("s")) {
+                confirma = true;
+                confirmacaoSucedida = true;
+            } else if (resposta.equalsIgnoreCase("n")) {
+                confirma = false;
+                confirmacaoSucedida = true;
+            } else {
+                System.out.print("Valor inválido! Tente novamente: ");
+                resposta = scanner.nextLine();
+            }
+        }
+        return confirma;
+    }
+
     private static boolean iniciaApp() {
-        boolean appDesligado = false;
+        boolean continuaLigado = true;
         
         Dicionario dicionarioLuan = new Dicionario("O Grande Dicionário do Luan", "C:\\Users\\areia\\Documents\\Coisas do Luan\\Desenvolvimento\\Estudos\\projeto-dicionario\\src\\main\\java\\br\\univates\\luan\\projeto_dicionario\\entities\\dicionario.json");
         
@@ -38,13 +58,14 @@ public class App {
             System.out.println(palavra.getPalavra() + ": " + palavra.getSignificado());
             System.out.println("Fonte: " + palavra.getFonte() + "\n");
         }
-        
-        return appDesligado;
+
+        System.out.print("Continuar o programa? ");
+        String resposta = scanner.nextLine();
+        continuaLigado = confirmacao(resposta);
+        return continuaLigado;
     }
     
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        
         String nomeDeUsuario;
         String senhaDeAcesso;
         Usuario usuario = null;
@@ -59,7 +80,11 @@ public class App {
 
             if (validaExistenciaUsuario(usuario)) {
                 System.out.println("Logado como: " + usuario.getNomeDeUsuario() + "\n");
-                iniciaApp();
+                boolean appEstaFuncionando = iniciaApp();
+                while(appEstaFuncionando) {
+                    appEstaFuncionando = iniciaApp();
+                }
+                System.out.println("Programa finalizado!");
             } else {
                 System.out.println("Usuário ou senha inválido!\n");
             }
