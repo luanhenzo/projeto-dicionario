@@ -14,7 +14,8 @@ public class App {
 
     private static Scanner scanner = new Scanner(System.in);
 
-    private static final JSONArray LISTA_DE_USUARIOS = JSONUtils.readExternalJson("C:\\Users\\areia\\Documents\\Coisas do Luan\\Desenvolvimento\\Estudos\\projeto-dicionario\\src\\main\\java\\br\\univates\\luan\\projeto_dicionario\\entities\\usuarios.json");
+    //private static final JSONArray LISTA_DE_USUARIOS = JSONUtils.readExternalJson("C:\\Users\\areia\\Documents\\Coisas do Luan\\Desenvolvimento\\Estudos\\projeto-dicionario\\src\\main\\java\\br\\univates\\luan\\projeto_dicionario\\entities\\usuarios.json");
+    private static final JSONArray LISTA_DE_USUARIOS = JSONUtils.readExternalJson("/home/luansinh0/IdeaProjects/projeto-dicionario/src/main/java/br/univates/luan/projeto_dicionario/entities/usuarios.json");
     
     private static boolean validaExistenciaUsuario(Usuario usuarioTentandoEntrar) {
         boolean usuarioEncontrado = false;
@@ -52,8 +53,9 @@ public class App {
     private static boolean iniciaApp() {
         boolean continuaLigado = true;
         
-        Dicionario dicionarioLuan = new Dicionario("O Grande Dicionário do Luan", "C:\\Users\\areia\\Documents\\Coisas do Luan\\Desenvolvimento\\Estudos\\projeto-dicionario\\src\\main\\java\\br\\univates\\luan\\projeto_dicionario\\entities\\dicionario.json");
-        
+        Dicionario dicionarioLuan = new Dicionario("/home/luansinh0/IdeaProjects/projeto-dicionario/src/main/java/br/univates/luan/projeto_dicionario/entities/dicionario.json");
+
+        System.out.println(dicionarioLuan.getNome());
         for (Palavra palavra : dicionarioLuan.getPalavras()) {
             System.out.println(palavra.getPalavra() + ": " + palavra.getSignificado());
             System.out.println("Fonte: " + palavra.getFonte() + "\n");

@@ -6,22 +6,23 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 public class Dicionario {
-    
-    private final String nome;
-    private final ArrayList<Palavra> palavras = new ArrayList<>();
-    private final String enderecoDicionario;
 
-    public Dicionario(String nome, String enderecoDicionario) {
-        this.nome = nome;
+    private final String enderecoDicionario;
+    private final String nome;
+    private final ArrayList<Palavra> palavras;
+
+    public Dicionario(String enderecoDicionario) {
         this.enderecoDicionario = enderecoDicionario;
-        
-        JSONArray palavrasJsonArray = JSONUtils.readExternalJson(this.enderecoDicionario);
-        
-        for (Object palavraJson : palavrasJsonArray) {
-            JSONObject palavra = (JSONObject) palavraJson;
-            String palavraNome = (String) palavra.get("palavra");
-            String palavraSignificado = (String) palavra.get("significado");
-            String palavraFonte = (String) palavra.get("fonte");
+        JSONObject dicionarioJson = JSONUtils.readExternalJsonObject(this.enderecoDicionario);
+        this.nome = (String) dicionarioJson.get("nome");
+
+        this.palavras = new ArrayList<>();
+        JSONArray palavrasDicionario = (JSONArray) dicionarioJson.get("palavras");
+        for (Object palavra : palavrasDicionario) {
+            JSONObject palavraJsonObject = (JSONObject) palavra;
+            String palavraNome = (String) palavraJsonObject.get("palavra");
+            String palavraSignificado = (String) palavraJsonObject.get("significado");
+            String palavraFonte = (String) palavraJsonObject.get("fonte");
             this.palavras.add(new Palavra(palavraNome, palavraSignificado, palavraFonte));
         }
     }
