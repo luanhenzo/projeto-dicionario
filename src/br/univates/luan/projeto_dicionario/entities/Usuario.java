@@ -4,10 +4,6 @@
  */
 package br.univates.luan.projeto_dicionario.entities;
 
-/**
- *
- * @author areia
- */
 public class Usuario {
     
     private String nomeDeUsuario;
