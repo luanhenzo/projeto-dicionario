@@ -7,6 +7,7 @@ import br.univates.luan.projeto_dicionario.entities.Usuario;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.ArrayList;
 
 public class AppView extends JDialog {
     private Usuario usuarioLogado;
@@ -23,7 +24,8 @@ public class AppView extends JDialog {
     private JPanel enderecoDicionarioPanel;
     private JScrollPane dicionarioScrollPanel;
     private JList palavrasList;
-    private DefaultListModel<Palavra> listaDePalavras;
+    private ArrayList<Palavra> palavrasDoDicionario;
+    private DefaultListModel<String> palavrasListModel;
 
     private Dicionario dicionario;
 
@@ -48,11 +50,24 @@ public class AppView extends JDialog {
 
         sairBtn.addActionListener(e -> onSair());
 
-        listaDePalavras = new DefaultListModel();
+        palavrasDoDicionario = new ArrayList<>();
 
-        palavrasList.setModel(listaDePalavras);
+        palavrasListModel = new DefaultListModel();
+
+        palavrasList.setModel(palavrasListModel);
         palavrasList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         palavrasList.setLayoutOrientation(JList.VERTICAL);
+
+        palavrasList.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent evt) {
+                JList palavrasList = (JList)evt.getSource();
+                if (evt.getClickCount() == 2) {
+                    int index = palavrasList.locationToIndex(evt.getPoint());
+                    Palavra palavraSelecionada = palavrasDoDicionario.get(index);
+                    new PalavraView(palavraSelecionada).setVisible(true);
+                }
+            }
+        });
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -87,12 +102,14 @@ public class AppView extends JDialog {
         try {
             dicionario = new Dicionario(enderecoDicinarioTextField.getText());
             for (Palavra palavra : dicionario.getPalavras()) {
-                listaDePalavras.addElement(palavra);
+                palavrasDoDicionario.add(palavra);
+                palavrasListModel.addElement(palavra.getPalavra());
             }
             enderecoDicinarioTextField.setText("");
         } catch (NullPointerException e) {
             dicionario = null;
-            listaDePalavras.removeAllElements();
+            palavrasDoDicionario.clear();
+            palavrasListModel.removeAllElements();
             JOptionPane.showMessageDialog(this, "Nenhum dicionário foi encontrado neste endereço!");
         }
     }

@@ -23,7 +23,7 @@ public class Dicionario {
             String palavraNome = (String) palavraJsonObject.get("palavra");
             String palavraSignificado = (String) palavraJsonObject.get("significado");
             String palavraFonte = (String) palavraJsonObject.get("fonte");
-            this.palavras.add(new Palavra(palavraNome, palavraSignificado, palavraFonte));
+            this.palavras.add(new Palavra(palavraNome, palavraSignificado, palavraFonte, this));
         }
     }
 
