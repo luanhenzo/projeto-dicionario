@@ -23,7 +23,7 @@ public class JSONUtils {
         return object;
     }
 
-    public static JSONArray readExternalJson(String path) {
+    public static JSONArray readExternalJsonArray(String path) {
         JSONArray array = null;
         JSONParser parser = new JSONParser();
         try {

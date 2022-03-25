@@ -21,7 +21,7 @@ public class LoginView extends JDialog {
     private JPanel btnsPanel;
 
     // WINDOWS
-    private static final JSONArray LISTA_DE_USUARIOS = JSONUtils.readExternalJson("C:\\Users\\areia\\Documents\\Coisas do Luan\\Desenvolvimento\\Estudos\\projeto-dicionario\\src\\br\\univates\\luan\\projeto_dicionario\\data\\usuarios.json");
+    private static final JSONArray LISTA_DE_USUARIOS = JSONUtils.readExternalJsonArray("C:\\Users\\areia\\Documents\\Coisas do Luan\\Desenvolvimento\\Estudos\\projeto-dicionario\\src\\br\\univates\\luan\\projeto_dicionario\\data\\usuarios.json");
 
     // LINUX
     //private static final JSONArray LISTA_DE_USUARIOS = JSONUtils.readExternalJson("/home/luansinh0/IdeaProjects/projeto-dicionario/src/br/univates/luan/projeto_dicionario/data/usuarios.json");

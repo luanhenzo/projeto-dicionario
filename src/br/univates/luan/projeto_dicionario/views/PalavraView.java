@@ -1,10 +1,18 @@
 package br.univates.luan.projeto_dicionario.views;
 
+import br.univates.luan.projeto_dicionario.entities.Dicionario;
 import br.univates.luan.projeto_dicionario.entities.Palavra;
+import br.univates.luan.projeto_dicionario.entities.Usuario;
+import br.univates.luan.projeto_dicionario.utilities.JSONUtils;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class PalavraView extends JDialog {
     private JPanel contentPane;
@@ -21,22 +29,13 @@ public class PalavraView extends JDialog {
     private JLabel fonteLabel;
     private JLabel significadoLabel;
     private JLabel palavraLabel;
+
+    private AppView runningApp;
     private Palavra palavraSelecionada;
 
-    private String breakLineString(String strToBreakLine, int maxCharPerLine) {
-        String breakedStr = "";
-        char[] charArray = strToBreakLine.toCharArray();
-        for (int i = 0; i < charArray.length; i++) {
-            if ((i + 1) % maxCharPerLine == 0) {
-                breakedStr += "\n";
-            }
-            breakedStr += charArray[i];
-        }
-        return breakedStr;
-    }
-
-    public PalavraView(Palavra palavra) {
-        this.palavraSelecionada = palavra;
+    public PalavraView(AppView appView) {
+        this.runningApp = appView;
+        this.palavraSelecionada = runningApp.getPalavraSelecionada();
         setContentPane(contentPane);
         setModal(true);
         pack();
@@ -77,13 +76,38 @@ public class PalavraView extends JDialog {
             editarButton.setText("Salvar");
             voltarButton.setText("Cancelar");
         } else if (editarButton.getText().equals("Salvar")) {
+            JSONObject dicionarioEmJson = JSONUtils.readExternalJsonObject(palavraSelecionada.getDicionarioFonte().getEnderecoDicionario());
+            JSONArray palavrasDoDicionario = (JSONArray) dicionarioEmJson.get("palavras");
 
+            for (Object p : palavrasDoDicionario) {
+                JSONObject pJo = (JSONObject) p;
+                if (pJo.get("palavra").equals(palavraSelecionada.getPalavra())) {
+                    pJo.put("palavra", palavraTextField.getText());
+                    pJo.put("significado", significadoTextArea.getText());
+                    pJo.put("fonte", fonteTextField.getText());
+
+                    palavrasDoDicionario.remove(p);
+                    palavrasDoDicionario.add(pJo);
+
+                    dicionarioEmJson.put("palavras", palavrasDoDicionario);
+                    break;
+                }
+            }
+            try {
+                Files.write(Paths.get(palavraSelecionada.getDicionarioFonte().getEnderecoDicionario()), dicionarioEmJson.toJSONString().getBytes());
+                JOptionPane.showMessageDialog(this, "Palavra \"" + palavraSelecionada.getPalavra() + "\" alterada com sucesso.");
+                runningApp.setDicionario(new Dicionario(palavraSelecionada.getDicionarioFonte().getEnderecoDicionario()));
+            } catch (IOException e) {
+                e.printStackTrace();
+                JOptionPane.showMessageDialog(this, "Algum erro aconteceu.\nVeja o terminal para mais informações.");
+            }
         }
     }
 
     private void onSair() {
         if (voltarButton.getText().equals("Voltar")) {
             dispose();
+            runningApp.setPalavraSelecionada(null);
         } else if(voltarButton.getText().equals("Cancelar")) {
             palavraTextField.setText(palavraSelecionada.getPalavra());
             palavraTextField.setEnabled(false);
@@ -97,5 +121,12 @@ public class PalavraView extends JDialog {
             editarButton.setText("Editar");
             voltarButton.setText("Voltar");
         }
+    }
+
+    public static void main(String args[]) {
+        Dicionario dicionarioDeTestes = new Dicionario("C:\\Users\\areia\\Documents\\Coisas do Luan\\Desenvolvimento\\Estudos\\projeto-dicionario\\src\\br\\univates\\luan\\projeto_dicionario\\data\\dicionario_teste.json");
+        AppView appView = new AppView(new Usuario("luan", "0000"));
+        appView.setDicionario(dicionarioDeTestes);
+        new PalavraView(appView).setVisible(true);
     }
 }

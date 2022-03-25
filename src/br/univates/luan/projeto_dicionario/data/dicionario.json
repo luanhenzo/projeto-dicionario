@@ -1,76 +1,75 @@
 {
-    "nome": "O Grande Dicionário",
-    "palavras":
-    [
-        {
-            "palavra": "Benchmarking",
-            "significado": "avaliação da concorrência, a fim de adotar os melhores desempenhos destes, para melhorar sua própria performance.",
-            "fonte": ""
-        },
-        {
-            "palavra": "Retorno sobre Investimento (ROI)",
-            "significado": "indicador de ganhos ou perdas de um investimento ao realizá-lo. Apresenta-se por ROI = (faturamento – investimento) / investimento. ROI < 0: prejuízo, ROI = 0: investimento se pagou, ROI > 1: lucro.",
-            "fonte": ""
-        },
-        {
-            "palavra": "Brainstorming",
-            "significado": "do inglês: tempestade de ideias; técnica de apresentação espontânea de palavras, pensamentos e ideias a fim de construir alguma solução ou produzir algo criativo.",
-            "fonte": ""
-        },
-        {
-            "palavra": "ERP – Enterprise Resource Planning",
-            "significado": "do inglês: planejamento de recursos empresariais; um sistema unificado que coleta, processa e armazena todas as informações de uma empresa.",
-            "fonte": ""
-        },
-        {
-            "palavra": "Orçamento",
-            "significado": "estimativa que se faz com o intuito de saber o valor de algum projeto e/ou investimento.",
-            "fonte": ""
-        },
-        {
-            "palavra": "BI – Business Intelligence",
-            "significado": " processo de coleta, análise e monitoramento de dados que podem influenciar na tomada de decisões de uma empresa.",
-            "fonte": ""
-        },
-        {
-            "palavra": "B2B – Business to Business",
-            "significado": "operações e/ou transações feitas entre empresas.",
-            "fonte": ""
-        },
-        {
-            "palavra": "Fluxo de caixa",
-            "significado": "controle da movimentação financeira de um negócio, levando em conta qualquer entrada ou saída de dinheiro em um determinado período.",
-            "fonte": ""
-        },
-        {
-            "palavra": "Capital de giro",
-            "significado": "recursos, tais como dinheiro e crédito, que são necessários para possibilitar o funcionamento da empresa.",
-            "fonte": ""
-        },
-        {
-            "palavra": "B2C – Business to Consumer",
-            "significado": "operações e/ou transações feitas entre empresas e o consumidor final.",
-            "fonte": ""
-        },
-        {
-            "palavra": "Networking",
-            "significado": " rede de contatos profissional.",
-            "fonte": ""
-        },
-        {
-            "palavra": "Endomarketing",
-            "significado": "atividades de marketing internos, focados em acionistas e funcionários.",
-            "fonte": ""
-        },
-        {
-            "palavra": "Market Share",
-            "significado": "representação, em porcentagem, da participação de uma empresa no setor da qual esta atua.",
-            "fonte": ""
-        },
-        {
-            "palavra": "Ticket médio",
-            "significado": "valor médio da venda de um produto ou serviço em um determinado período. Apresenta-se por: TM = valor total das vendas / número de vendas.",
-            "fonte": ""
-        }
-    ]
+  "nome": "O Grande Dicionário",
+  "palavras": [
+    {
+      "palavra": "Benchmarking",
+      "significado": "avaliação da concorrência, a fim de adotar os melhores desempenhos destes, para melhorar sua própria performance.",
+      "fonte": ""
+    },
+    {
+      "palavra": "Retorno sobre Investimento (ROI)",
+      "significado": "indicador de ganhos ou perdas de um investimento ao realizá-lo. Apresenta-se por ROI = (faturamento – investimento) / investimento. ROI < 0: prejuízo, ROI = 0: investimento se pagou, ROI > 1: lucro.",
+      "fonte": ""
+    },
+    {
+      "palavra": "Brainstorming",
+      "significado": "do inglês: tempestade de ideias; técnica de apresentação espontânea de palavras, pensamentos e ideias a fim de construir alguma solução ou produzir algo criativo.",
+      "fonte": ""
+    },
+    {
+      "palavra": "ERP – Enterprise Resource Planning",
+      "significado": "do inglês: planejamento de recursos empresariais; um sistema unificado que coleta, processa e armazena todas as informações de uma empresa.",
+      "fonte": ""
+    },
+    {
+      "palavra": "Orçamento",
+      "significado": "estimativa que se faz com o intuito de saber o valor de algum projeto e/ou investimento.",
+      "fonte": ""
+    },
+    {
+      "palavra": "BI – Business Intelligence",
+      "significado": " processo de coleta, análise e monitoramento de dados que podem influenciar na tomada de decisões de uma empresa.",
+      "fonte": ""
+    },
+    {
+      "palavra": "B2B – Business to Business",
+      "significado": "operações e/ou transações feitas entre empresas.",
+      "fonte": ""
+    },
+    {
+      "palavra": "Fluxo de caixa",
+      "significado": "controle da movimentação financeira de um negócio, levando em conta qualquer entrada ou saída de dinheiro em um determinado período.",
+      "fonte": ""
+    },
+    {
+      "palavra": "Capital de giro",
+      "significado": "recursos, tais como dinheiro e crédito, que são necessários para possibilitar o funcionamento da empresa.",
+      "fonte": ""
+    },
+    {
+      "palavra": "B2C – Business to Consumer",
+      "significado": "operações e/ou transações feitas entre empresas e o consumidor final.",
+      "fonte": ""
+    },
+    {
+      "palavra": "Networking",
+      "significado": " rede de contatos profissional.",
+      "fonte": ""
+    },
+    {
+      "palavra": "Endomarketing",
+      "significado": "atividades de marketing internos, focados em acionistas e funcionários.",
+      "fonte": ""
+    },
+    {
+      "palavra": "Market Share",
+      "significado": "representação, em porcentagem, da participação de uma empresa no setor da qual esta atua.",
+      "fonte": ""
+    },
+    {
+      "palavra": "Ticket médio",
+      "significado": "valor médio da venda de um produto ou serviço em um determinado período. Apresenta-se por: TM = valor total das vendas / número de vendas.",
+      "fonte": ""
+    }
+  ]
 }
