@@ -2,16 +2,6 @@
   "nome": "O Grande Dicionário",
   "palavras": [
     {
-      "palavra": "Retorno sobre Investimento (ROI)",
-      "significado": "indicador de ganhos ou perdas de um investimento ao realizá-lo. Apresenta-se por ROI = (faturamento \u2013 investimento) \/ investimento. ROI < 0: prejuízo, ROI = 0: investimento se pagou, ROI > 1: lucro.",
-      "fonte": ""
-    },
-    {
-      "palavra": "BI \u2013 Business Intelligence",
-      "significado": " processo de coleta, análise e monitoramento de dados que podem influenciar na tomada de decisões de uma empresa.",
-      "fonte": ""
-    },
-    {
       "palavra": "B2B \u2013 Business to Business",
       "significado": "operações e\/ou transações feitas entre empresas.",
       "fonte": ""
@@ -70,6 +60,16 @@
       "palavra": "Orçamento",
       "significado": "estimativa que se faz com o intuito de saber o valor de algum projeto e\/ou investimento.",
       "fonte": "IRRAAAAA"
+    },
+    {
+      "palavra": "BI \u2013 Business Intelligence",
+      "significado": " processo de coleta, análise e monitoramento de dados que podem influenciar na tomada de decisões de uma empresa.",
+      "fonte": "É O TESTAS"
+    },
+    {
+      "palavra": "Retorno sobre Investimento (ROI)",
+      "significado": "indicador de ganhos ou perdas de um investimento ao realizá-lo. Apresenta-se por ROI = (faturamento \u2013 investimento) \/ investimento. ROI < 0: prejuízo, ROI = 0: investimento se pagou, ROI > 1: lucro.",
+      "fonte": "é o rol roys? TESTEEEE"
     }
   ]
 }

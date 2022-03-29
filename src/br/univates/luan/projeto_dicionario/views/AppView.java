@@ -26,13 +26,13 @@ public class AppView extends JDialog {
     private JList palavrasList;
     private ArrayList<Palavra> palavrasDoDicionario;
     private DefaultListModel<String> palavrasListModel;
-    private AppView app;
+    private AppView instance;
 
     private Dicionario dicionario;
     private Palavra palavraSelecionada;
 
     public AppView(Usuario usuarioLogado) {
-        this.app = this;
+        this.instance = this;
         this.usuarioLogado = usuarioLogado;
         this.palavraSelecionada = null;
         setContentPane(contentPane);
@@ -68,7 +68,7 @@ public class AppView extends JDialog {
                 if (evt.getClickCount() == 2) {
                     int index = palavrasList.locationToIndex(evt.getPoint());
                     palavraSelecionada = palavrasDoDicionario.get(index);
-                    new PalavraView(app).setVisible(true);
+                    new PalavraView(instance).setVisible(true);
                 }
             }
         });
