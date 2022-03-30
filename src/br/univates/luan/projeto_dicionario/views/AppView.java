@@ -24,15 +24,12 @@ public class AppView extends JDialog {
     private JPanel enderecoDicionarioPanel;
     private JScrollPane dicionarioScrollPanel;
     private JList palavrasList;
-    private ArrayList<Palavra> palavrasDoDicionario;
     private DefaultListModel<String> palavrasListModel;
-    private AppView instance;
 
     private Dicionario dicionario;
     private Palavra palavraSelecionada;
 
     public AppView(Usuario usuarioLogado) {
-        this.instance = this;
         this.usuarioLogado = usuarioLogado;
         this.palavraSelecionada = null;
         setContentPane(contentPane);
@@ -54,20 +51,19 @@ public class AppView extends JDialog {
 
         sairBtn.addActionListener(e -> onSair());
 
-        palavrasDoDicionario = new ArrayList<>();
-
         palavrasListModel = new DefaultListModel();
 
         palavrasList.setModel(palavrasListModel);
         palavrasList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         palavrasList.setLayoutOrientation(JList.VERTICAL);
 
+        AppView instance = this;
         palavrasList.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent evt) {
                 JList palavrasList = (JList)evt.getSource();
                 if (evt.getClickCount() == 2) {
                     int index = palavrasList.locationToIndex(evt.getPoint());
-                    palavraSelecionada = palavrasDoDicionario.get(index);
+                    palavraSelecionada = dicionario.getPalavra(index);
                     new PalavraView(instance).setVisible(true);
                 }
             }
@@ -101,18 +97,19 @@ public class AppView extends JDialog {
         return dicionario;
     }
 
-    public void setDicionario(Dicionario dicionario) {
-        this.dicionario = dicionario;
-        palavrasDoDicionario.clear();
+    public void setDicionario(Dicionario dic) {
+        this.dicionario = dic;
+    }
+
+    public void updateListModel() {
         palavrasListModel.removeAllElements();
         for (Palavra palavra : dicionario.getPalavras()) {
-            palavrasDoDicionario.add(palavra);
             palavrasListModel.addElement(palavra.getPalavra());
         }
     }
 
     private void onRegistrar() {
-        System.out.println("REGISTRAR!");
+        new RegistrarView(this).setVisible(true);
     }
 
     private void onPesquisar() {
@@ -128,11 +125,15 @@ public class AppView extends JDialog {
         try {
             Dicionario dicio = new Dicionario(enderecoDicinarioTextField.getText());
             setDicionario(dicio);
+            updateListModel();
             enderecoDicinarioTextField.setText("");
+            registrarBtn.setEnabled(true);
+            pesquisarBtn.setEnabled(true);
         } catch (NullPointerException e) {
             dicionario = null;
-            palavrasDoDicionario.clear();
             palavrasListModel.removeAllElements();
+            registrarBtn.setEnabled(false);
+            pesquisarBtn.setEnabled(false);
             JOptionPane.showMessageDialog(this, "Nenhum dicionário foi encontrado neste endereço!");
         }
     }

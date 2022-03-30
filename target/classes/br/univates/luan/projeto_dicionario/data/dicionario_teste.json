@@ -2,26 +2,6 @@
   "nome": "O Grande Dicionário",
   "palavras": [
     {
-      "palavra": "B2B \u2013 Business to Business",
-      "significado": "operações e\/ou transações feitas entre empresas.",
-      "fonte": ""
-    },
-    {
-      "palavra": "Fluxo de caixa",
-      "significado": "controle da movimentação financeira de um negócio, levando em conta qualquer entrada ou saída de dinheiro em um determinado período.",
-      "fonte": ""
-    },
-    {
-      "palavra": "Capital de giro",
-      "significado": "recursos, tais como dinheiro e crédito, que são necessários para possibilitar o funcionamento da empresa.",
-      "fonte": ""
-    },
-    {
-      "palavra": "B2C \u2013 Business to Consumer",
-      "significado": "operações e\/ou transações feitas entre empresas e o consumidor final.",
-      "fonte": ""
-    },
-    {
       "palavra": "Endomarketing",
       "significado": "atividades de marketing internos, focados em acionistas e funcionários.",
       "fonte": ""
@@ -70,6 +50,36 @@
       "palavra": "Retorno sobre Investimento (ROI)",
       "significado": "indicador de ganhos ou perdas de um investimento ao realizá-lo. Apresenta-se por ROI = (faturamento \u2013 investimento) \/ investimento. ROI < 0: prejuízo, ROI = 0: investimento se pagou, ROI > 1: lucro.",
       "fonte": "é o rol roys? TESTEEEE"
+    },
+    {
+      "palavra": "Capital de giro",
+      "significado": "recursos, tais como dinheiro e crédito, que são necessários para possibilitar o funcionamento da empresa.",
+      "fonte": "é o testas"
+    },
+    {
+      "palavra": "B2C \u2013 Business to Consumer",
+      "significado": "operações e\/ou transações feitas entre empresas e o consumidor final.",
+      "fonte": "uma fonte ai"
+    },
+    {
+      "palavra": "B2B \u2013 Business to Business",
+      "significado": "operações e\/ou transações feitas entre empresas.",
+      "fonte": "IRRAAAAA UEPAAA"
+    },
+    {
+      "palavra": "Fluxo de caixa",
+      "significado": "controle da movimentação financeira de um negócio, levando em conta qualquer entrada ou saída de dinheiro em um determinado período.",
+      "fonte": "FLUXO CAXA"
+    },
+    {
+      "palavra": "é um teste",
+      "significado": "mais um teste",
+      "fonte": "outro teste"
+    },
+    {
+      "palavra": "IIRRAAA",
+      "significado": "uuuuhul!",
+      "fonte": "BORAAAAA, aaaaa ;-;"
     }
   ]
 }

@@ -9,11 +9,11 @@ public class Palavra {
     private String fonte;
     private Dicionario dicionarioFonte;
 
-    public Palavra(String palavra, String significado, String fonte, Dicionario dicionarioFonte) {
+    public Palavra(String palavra, String significado, String fonte) {
         this.palavra = palavra;
         this.significado = significado;
         this.fonte = fonte;
-        this.dicionarioFonte = dicionarioFonte;
+        this.dicionarioFonte = null;
     }
 
     public String getPalavra() {
@@ -42,5 +42,9 @@ public class Palavra {
 
     public Dicionario getDicionarioFonte() {
         return dicionarioFonte;
+    }
+
+    public void setDicionarioFonte(Dicionario dicionarioFonte) {
+        this.dicionarioFonte = dicionarioFonte;
     }
 }

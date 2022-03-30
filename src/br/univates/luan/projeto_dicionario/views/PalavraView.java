@@ -16,8 +16,8 @@ import java.nio.file.Paths;
 
 public class PalavraView extends JDialog {
     private JPanel contentPane;
-    private JButton voltarButton;
-    private JButton editarButton;
+    private JButton voltarBtn;
+    private JButton editarBtn;
     private JTextField palavraTextField;
     private JTextField fonteTextField;
     private JTextArea significadoTextArea;
@@ -29,6 +29,7 @@ public class PalavraView extends JDialog {
     private JLabel fonteLabel;
     private JLabel significadoLabel;
     private JLabel palavraLabel;
+    private JButton removerBtn;
 
     private AppView runningApp;
     private Palavra palavraSelecionada;
@@ -51,9 +52,11 @@ public class PalavraView extends JDialog {
         significadoTextArea.setText(palavraSelecionada.getSignificado());
         fonteTextField.setText(palavraSelecionada.getFonte());
 
-        editarButton.addActionListener(e -> onEditar());
+        editarBtn.addActionListener(e -> onEditar());
 
-        voltarButton.addActionListener(e -> onSair());
+        removerBtn.addActionListener(e -> onRemover());
+
+        voltarBtn.addActionListener(e -> onSair());
 
         // call onCancel() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
@@ -68,14 +71,15 @@ public class PalavraView extends JDialog {
     }
 
     private void onEditar() {
-        if (editarButton.getText().equals("Editar")) {
+        if (editarBtn.getText().equals("Editar")) {
             palavraTextField.setEnabled(true);
             significadoTextArea.setEnabled(true);
             fonteTextField.setEnabled(true);
 
-            editarButton.setText("Salvar");
-            voltarButton.setText("Cancelar");
-        } else if (editarButton.getText().equals("Salvar")) {
+            editarBtn.setText("Salvar");
+            removerBtn.setEnabled(false);
+            voltarBtn.setText("Cancelar");
+        } else if (editarBtn.getText().equals("Salvar")) {
             JSONObject dicionarioEmJson = JSONUtils.readExternalJsonObject(palavraSelecionada.getDicionarioFonte().getEnderecoDicionario());
             JSONArray palavrasDoDicionario = (JSONArray) dicionarioEmJson.get("palavras");
 
@@ -104,11 +108,21 @@ public class PalavraView extends JDialog {
         }
     }
 
+    private void onRemover() {
+        int confirmcao = JOptionPane.showConfirmDialog(this, "Confirmar remoção desta palavra?", "Eliminar palavra?", JOptionPane.YES_NO_OPTION);
+        if (confirmcao == 0) {
+            runningApp.getDicionario().removePalavra(palavraSelecionada);
+            runningApp.updateListModel();
+            JOptionPane.showMessageDialog(this, "Palavra \"" + palavraSelecionada.getPalavra() + "\" removida com sucesso.");
+            dispose();
+        }
+    }
+
     private void onSair() {
-        if (voltarButton.getText().equals("Voltar")) {
+        if (voltarBtn.getText().equals("Voltar")) {
             dispose();
             runningApp.setPalavraSelecionada(null);
-        } else if(voltarButton.getText().equals("Cancelar")) {
+        } else if(voltarBtn.getText().equals("Cancelar")) {
             palavraTextField.setText(palavraSelecionada.getPalavra());
             palavraTextField.setEnabled(false);
 
@@ -118,8 +132,9 @@ public class PalavraView extends JDialog {
             fonteTextField.setText(palavraSelecionada.getFonte());
             fonteTextField.setEnabled(false);
 
-            editarButton.setText("Editar");
-            voltarButton.setText("Voltar");
+            editarBtn.setText("Editar");
+            removerBtn.setEnabled(true);
+            voltarBtn.setText("Voltar");
         }
     }
 
