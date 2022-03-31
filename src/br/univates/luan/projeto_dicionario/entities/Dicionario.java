@@ -47,8 +47,20 @@ public class Dicionario {
     public Palavra getPalavra(int index) {
         return palavras.get(index);
     }
+
+    public Palavra getPalavra(String palavra) {
+        Palavra palavraSelecionada = null;
+        for (Palavra p : palavras) {
+            if (p.getPalavra().equalsIgnoreCase(palavra)) {
+                palavraSelecionada = p;
+                break;
+            }
+        }
+        return palavraSelecionada;
+    }
     
-    public void addPalavra(Palavra palavra) {
+    public boolean addPalavra(Palavra palavra) {
+        boolean palavraAdicionadaComSucesso =  false;
         JSONObject dicioJo = JSONUtils.readExternalJsonObject(getEnderecoDicionario());
         JSONArray dicioPalavras = (JSONArray) dicioJo.get("palavras");
 
@@ -75,15 +87,15 @@ public class Dicionario {
                 Files.write(Paths.get(getEnderecoDicionario()), dicioJo.toJSONString().getBytes());
                 this.palavras.add(palavra);
                 palavra.setDicionarioFonte(this);
+                palavraAdicionadaComSucesso = true;
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            System.out.println("PALAVRA JÁ EXISTE!");
         }
+        return palavraAdicionadaComSucesso;
     }
     
-    public void removePalavra(Palavra palavra) {
+    public boolean removePalavra(Palavra palavra) {
         JSONObject dicioJo = JSONUtils.readExternalJsonObject(getEnderecoDicionario());
         JSONArray dicioPalavras = (JSONArray) dicioJo.get("palavras");
 
@@ -106,9 +118,8 @@ public class Dicionario {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            System.out.println("PALAVRA NÃO EXISTE!");
         }
+        return palavraExiste;
     }
     
 }

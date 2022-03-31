@@ -172,11 +172,15 @@ public class RegistrarView extends JDialog {
         Dicionario dicionario = runningApp.getDicionario();
 
         Palavra novaPalavra = new Palavra(palavra, significado, fonte);
-        dicionario.addPalavra(novaPalavra);
+        boolean palavraAdicionadaComSucesso = dicionario.addPalavra(novaPalavra);
 
-        JOptionPane.showMessageDialog(this, "Palavra \"" + novaPalavra.getPalavra() + "\" adicionada com sucesso.");
-        runningApp.updateListModel();
-        dispose();
+        if (palavraAdicionadaComSucesso) {
+            JOptionPane.showMessageDialog(this, "Palavra \"" + novaPalavra.getPalavra() + "\" adicionada com sucesso.");
+            runningApp.updateListModel();
+            dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Não foi possível registrar a palavra \"" + novaPalavra.getPalavra() + "\".");
+        }
     }
 
     private void onCancelar() {

@@ -111,10 +111,14 @@ public class PalavraView extends JDialog {
     private void onRemover() {
         int confirmcao = JOptionPane.showConfirmDialog(this, "Confirmar remoção desta palavra?", "Eliminar palavra?", JOptionPane.YES_NO_OPTION);
         if (confirmcao == 0) {
-            runningApp.getDicionario().removePalavra(palavraSelecionada);
-            runningApp.updateListModel();
-            JOptionPane.showMessageDialog(this, "Palavra \"" + palavraSelecionada.getPalavra() + "\" removida com sucesso.");
-            dispose();
+            boolean palavraRemovidaComSucesso = runningApp.getDicionario().removePalavra(palavraSelecionada);
+            if (palavraRemovidaComSucesso) {
+                runningApp.updateListModel();
+                JOptionPane.showMessageDialog(this, "Palavra \"" + palavraSelecionada.getPalavra() + "\" removida com sucesso.");
+                dispose();
+            } else {
+                JOptionPane.showMessageDialog(this, "Não foi possível deletar a palavra \"" + palavraSelecionada.getPalavra() + "\".");
+            }
         }
     }
 
